@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.landing {
+    background:
+        linear-gradient(180deg, #0007 0%, #0002 42%, #0009 100%),
+        linear-gradient(90deg, #0008 0%, #0001 45%, #0007 100%),
+        url("/images/yonkoo-wallpaper.jpg") center / cover no-repeat fixed;
+    color: #fff;
+    font-family: Inter, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.landing-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    padding: 18px clamp(18px, 4vw, 58px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.landing-brand {
+    align-items: center;
+    color: #fff;
+    display: inline-flex;
+    font-size: 24px;
+    font-weight: 900;
+    gap: 12px;
+    letter-spacing: 0;
+    text-decoration: none;
+    text-shadow: 0 2px 18px #000;
+}
+
+.landing-brand img {
+    border-radius: 50%;
+    box-shadow: 0 8px 28px #0008;
+    height: 52px;
+    object-fit: cover;
+    width: 52px;
+}
+
+.landing-hero {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 96px 20px 44px;
+    text-align: center;
+}
+
+.landing-logo {
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 4px #ffffffcc,
+        0 20px 80px #000b;
+    height: clamp(126px, 18vw, 210px);
+    object-fit: cover;
+    width: clamp(126px, 18vw, 210px);
+}
+
+.landing-hero h1 {
+    color: #fff;
+    font-size: clamp(52px, 8vw, 104px);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 1;
+    margin: 0;
+    text-shadow: 0 6px 34px #000;
+}
+
+@media (max-width: 640px) {
+    .landing {
+        background-position: center;
+    }
+
+    .landing-brand {
+        font-size: 22px;
+    }
+
+    .landing-brand img {
+        height: 46px;
+        width: 46px;
+    }
+}
