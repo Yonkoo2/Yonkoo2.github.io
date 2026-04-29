@@ -355,6 +355,45 @@ button {
     z-index: 50;
 }
 
+.whoami-view {
+    align-items: center;
+    background:
+        linear-gradient(180deg, #0001 0%, #0004 100%),
+        url("/images/site-wallpaper.png") center / cover no-repeat;
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    position: fixed;
+    z-index: 60;
+}
+
+.whoami-view[hidden] {
+    display: none;
+}
+
+.whoami-view button {
+    color: #fff;
+    font-size: 42px;
+    position: absolute;
+    right: 30px;
+    text-shadow: 0 4px 18px #000;
+    top: 22px;
+}
+
+.whoami-logo {
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 5px #ffffffd9,
+        0 22px 90px #000c;
+    height: clamp(150px, 20vw, 260px);
+    object-fit: cover;
+    width: clamp(150px, 20vw, 260px);
+}
+
+.whoami-logo.spin-again {
+    animation: logo-spin 1.35s cubic-bezier(0.2, 0.75, 0.3, 1.05);
+}
+
 .modal[hidden] {
     display: none;
 }

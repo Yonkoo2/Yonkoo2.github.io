@@ -17,7 +17,7 @@ const searchToggle = document.querySelector("#searchToggle");
 const searchPanel = document.querySelector("#searchPanel");
 const searchInput = document.querySelector("#searchInput");
 const whoami = document.querySelector("#whoami");
-const whoamiModal = document.querySelector("#whoamiModal");
+const whoamiView = document.querySelector("#whoamiView");
 const closeWhoami = document.querySelector("#closeWhoami");
 
 function unique(values) {
@@ -111,15 +111,18 @@ searchInput.addEventListener("input", () => {
 });
 
 whoami.addEventListener("click", () => {
-    whoamiModal.hidden = false;
+    whoamiView.hidden = false;
+    whoamiView.querySelector(".whoami-logo").classList.remove("spin-again");
+    void whoamiView.querySelector(".whoami-logo").offsetWidth;
+    whoamiView.querySelector(".whoami-logo").classList.add("spin-again");
 });
 
 closeWhoami.addEventListener("click", () => {
-    whoamiModal.hidden = true;
+    whoamiView.hidden = true;
 });
 
-whoamiModal.addEventListener("click", (event) => {
-    if (event.target === whoamiModal) whoamiModal.hidden = true;
+whoamiView.addEventListener("click", (event) => {
+    if (event.target === whoamiView) whoamiView.hidden = true;
 });
 
 renderPosts(posts);
