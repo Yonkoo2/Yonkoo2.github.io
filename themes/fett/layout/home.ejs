@@ -1,0 +1,42 @@
+<section class="hero">
+  <h1><%= config.title %></h1>
+  <a class="down" href="#posts" aria-label="Go to posts"><i class="fa-solid fa-chevron-down"></i></a>
+</section>
+
+<div id="searchPanel" class="search-panel" hidden>
+  <label for="searchInput">Search posts</label>
+  <input id="searchInput" type="search" placeholder="Search by title, tag, category..." autocomplete="off" />
+</div>
+
+<main class="page-shell" id="posts">
+  <section class="post-list" aria-label="Posts">
+    <div id="postsMount">
+      <% if (site.posts.length) { %>
+        <% site.posts.sort('date', -1).forEach(function(post) { %>
+          <article class="post-card" data-title="<%= post.title %>" data-tags="<%= post.tags.map(t => t.name).join(' ') %>" data-category="<%= post.categories.map(c => c.name).join(' ') %>">
+            <a class="post-thumb" href="<%- post.external_path || url_for(post.path) %>">
+              <img src="<%= theme.logo %>" alt="<%= config.title %> logo" />
+            </a>
+            <div class="post-body">
+              <h2><a href="<%- post.external_path || url_for(post.path) %>"><%= post.title %></a></h2>
+              <div class="meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Created <%= date(post.date, 'YYYY-MM-DD') %></span>
+                <% post.categories.forEach(function(category) { %>
+                  <a href="<%- url_for(category.path) %>"><i class="fa-solid fa-folder"></i> <%= category.name %></a>
+                <% }) %>
+                <% if (post.type) { %><span><i class="fa-solid fa-bookmark"></i> <%= post.type %></span><% } %>
+                <% post.tags.forEach(function(tag) { %>
+                  <a href="<%- url_for(tag.path) %>"><i class="fa-solid fa-tag"></i> <%= tag.name %></a>
+                <% }) %>
+              </div>
+              <p class="excerpt"><%= post.excerpt || strip_html(post.content).substring(0, 160) %></p>
+            </div>
+          </article>
+        <% }) %>
+      <% } else { %>
+        <div class="empty">No posts yet. Add a Markdown file in <code>source/_posts</code> to publish your next blog.</div>
+      <% } %>
+    </div>
+  </section>
+  <%- partial('_partial/sidebar') %>
+</main>
