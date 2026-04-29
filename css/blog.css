@@ -1,101 +1,429 @@
+:root {
+    --glass: #ffffffd9;
+    --ink: #2f3542;
+    --muted: #6a707c;
+    --accent: #48aef3;
+    --shadow: 0 18px 55px #0004;
+}
+
 * {
     box-sizing: border-box;
 }
 
-html,
-body {
-    height: 100%;
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-}
-
-.landing {
     background:
-        linear-gradient(180deg, #0007 0%, #0002 42%, #0009 100%),
-        linear-gradient(90deg, #0008 0%, #0001 45%, #0007 100%),
-        url("/images/yonkoo-wallpaper.jpg") center / cover no-repeat fixed;
-    color: #fff;
+        linear-gradient(180deg, #0001 0%, #0004 100%),
+        url("/images/site-wallpaper.png") center / cover fixed no-repeat;
+    color: var(--ink);
     font-family: Inter, "Segoe UI", sans-serif;
+    margin: 0;
     min-height: 100vh;
-    overflow: hidden;
 }
 
-.landing-header {
+a,
+button {
+    color: inherit;
+    font: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.topbar {
     align-items: center;
+    backdrop-filter: blur(14px);
+    background: #ffffffb5;
     display: flex;
+    gap: 18px;
+    height: 64px;
     justify-content: space-between;
     left: 0;
-    padding: 18px clamp(18px, 4vw, 58px);
+    padding: 0 28px;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 20;
 }
 
-.landing-brand {
+.brand,
+.nav,
+.nav a,
+.nav button {
     align-items: center;
-    color: #fff;
-    display: inline-flex;
-    font-size: 24px;
+    display: flex;
+}
+
+.brand {
+    font-size: 22px;
     font-weight: 900;
-    gap: 12px;
-    letter-spacing: 0;
-    text-decoration: none;
-    text-shadow: 0 2px 18px #000;
+    gap: 10px;
 }
 
-.landing-brand img {
+.brand img {
     border-radius: 50%;
-    box-shadow: 0 8px 28px #0008;
-    height: 52px;
+    height: 46px;
     object-fit: cover;
-    width: 52px;
+    width: 46px;
 }
 
-.landing-hero {
+.logo-spin {
+    animation: logo-spin 1.35s cubic-bezier(0.2, 0.75, 0.3, 1.05);
+}
+
+.nav {
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: flex-end;
+}
+
+.nav a,
+.nav button {
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    opacity: 0.86;
+}
+
+.nav a:hover,
+.nav button:hover {
+    color: #111827;
+    opacity: 1;
+}
+
+.hero {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 22px;
     justify-content: center;
-    min-height: 100vh;
-    padding: 96px 20px 44px;
+    min-height: 58vh;
+    padding: 110px 18px 54px;
+    position: relative;
     text-align: center;
 }
 
-.landing-logo {
-    border-radius: 50%;
-    box-shadow:
-        0 0 0 4px #ffffffcc,
-        0 20px 80px #000b;
-    height: clamp(126px, 18vw, 210px);
-    object-fit: cover;
-    width: clamp(126px, 18vw, 210px);
+.hero::after {
+    background: #ffffff4f;
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%;
 }
 
-.landing-hero h1 {
+.hero h1 {
     color: #fff;
-    font-size: clamp(52px, 8vw, 104px);
+    font-size: clamp(48px, 7vw, 86px);
     font-weight: 900;
-    letter-spacing: 0;
-    line-height: 1;
     margin: 0;
-    text-shadow: 0 6px 34px #000;
+    text-shadow: 0 5px 30px #0009;
 }
 
-@media (max-width: 640px) {
-    .landing {
-        background-position: center;
+.down {
+    bottom: 24px;
+    color: #fff;
+    font-size: 24px;
+    position: absolute;
+    text-shadow: 0 3px 14px #000;
+}
+
+.search-panel {
+    backdrop-filter: blur(18px);
+    background: #fffffff2;
+    border-radius: 0 0 16px 16px;
+    box-shadow: var(--shadow);
+    left: 50%;
+    padding: 18px;
+    position: fixed;
+    top: 64px;
+    transform: translateX(-50%);
+    width: min(620px, calc(100% - 32px));
+    z-index: 19;
+}
+
+.search-panel label {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.search-panel input {
+    border: 1px solid #d7dce4;
+    border-radius: 999px;
+    font-size: 16px;
+    padding: 13px 18px;
+    width: 100%;
+}
+
+.page-shell {
+    align-items: start;
+    display: grid;
+    gap: 22px;
+    grid-template-columns: minmax(0, 1fr) 310px;
+    margin: -36px auto 70px;
+    max-width: 1240px;
+    padding: 0 22px;
+    position: relative;
+    z-index: 2;
+}
+
+.post-card,
+.card {
+    background: var(--glass);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.post-card {
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    margin-bottom: 22px;
+    min-height: 210px;
+    overflow: hidden;
+}
+
+.post-thumb {
+    background:
+        linear-gradient(135deg, #05070dcc, #11182799),
+        url("/images/site-wallpaper.png") center / cover;
+    display: grid;
+    min-height: 220px;
+    place-items: center;
+}
+
+.post-thumb img {
+    border-radius: 50%;
+    height: 112px;
+    object-fit: cover;
+    width: 112px;
+}
+
+.post-body {
+    padding: 34px 40px;
+}
+
+.post-body h2 {
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0 0 14px;
+}
+
+.post-body h2 a {
+    color: #2f9ff3;
+}
+
+.meta {
+    color: #7d838d;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14px;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.excerpt {
+    color: #5f6671;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.sidebar {
+    display: grid;
+    gap: 20px;
+    position: sticky;
+    top: 84px;
+}
+
+.card {
+    padding: 24px;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile img {
+    border-radius: 50%;
+    height: 116px;
+    object-fit: cover;
+    width: 116px;
+}
+
+.profile h2 {
+    font-size: 24px;
+    margin: 12px 0 22px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.stats strong,
+.stats span {
+    display: block;
+}
+
+.stats strong {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.stats span {
+    color: #555c66;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.github {
+    align-items: center;
+    background: var(--accent);
+    border-radius: 7px;
+    color: #fff;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 12px;
+}
+
+.side-list h2 {
+    font-size: 18px;
+    margin: 0 0 16px;
+}
+
+.recent-item {
+    align-items: center;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 58px 1fr;
+    margin-bottom: 12px;
+}
+
+.recent-item img {
+    border-radius: 5px;
+    height: 48px;
+    object-fit: cover;
+    width: 58px;
+}
+
+.recent-item strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.recent-item span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    background: #eef6ff;
+    border-radius: 999px;
+    color: #287fbd;
+    font-size: 13px;
+    padding: 7px 10px;
+}
+
+.modal {
+    align-items: center;
+    background: #0009;
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    position: fixed;
+    z-index: 50;
+}
+
+.modal[hidden] {
+    display: none;
+}
+
+.modal p {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    color: #111827;
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 900;
+    margin: 0;
+    padding: 38px 58px;
+}
+
+.modal button {
+    color: #fff;
+    font-size: 42px;
+    position: absolute;
+    right: 30px;
+    top: 22px;
+}
+
+.empty {
+    background: var(--glass);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    color: var(--muted);
+    padding: 32px;
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(-360deg) scale(0.7);
+    }
+    to {
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+@media (max-width: 980px) {
+    .page-shell,
+    .post-card {
+        grid-template-columns: 1fr;
     }
 
-    .landing-brand {
-        font-size: 22px;
+    .sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 680px) {
+    .topbar {
+        align-items: flex-start;
+        height: auto;
+        min-height: 64px;
+        padding: 12px 18px;
     }
 
-    .landing-brand img {
-        height: 46px;
-        width: 46px;
+    .nav {
+        gap: 10px;
+    }
+
+    .nav a,
+    .nav button {
+        font-size: 13px;
+    }
+
+    .post-body {
+        padding: 24px;
     }
 }
