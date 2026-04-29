@@ -1,0 +1,25 @@
+{
+  "name": "yonkoo2.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "hexo clean",
+    "build": "hexo generate",
+    "server": "hexo server",
+    "deploy": "hexo clean && hexo generate"
+  },
+  "hexo": {
+    "version": "8.1.1"
+  },
+  "dependencies": {
+    "hexo": "8.1.1",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
+    "hexo-generator-index": "^4.0.0",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^7.0.1",
+    "hexo-renderer-stylus": "^3.0.1",
+    "hexo-server": "^3.0.0"
+  }
+}

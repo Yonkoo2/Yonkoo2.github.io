@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="<%= config.language || 'en' %>">
+<%- partial('_partial/head') %>
+<body>
+  <%- partial('_partial/header') %>
+  <%- body %>
+  <%- partial('_partial/modal') %>
+  <script src="<%- url_for('/js/blog.js') %>"></script>
+</body>
+</html>

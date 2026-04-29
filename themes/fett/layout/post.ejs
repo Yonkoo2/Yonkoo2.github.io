@@ -1,0 +1,18 @@
+<section class="hero compact">
+  <h1><%= page.title %></h1>
+</section>
+<main class="page-shell">
+  <article class="card article-content">
+    <div class="meta">
+      <span><i class="fa-solid fa-calendar-days"></i> Created <%= date(page.date, 'YYYY-MM-DD') %></span>
+      <% page.categories.forEach(function(category) { %>
+        <a href="<%- url_for(category.path) %>"><i class="fa-solid fa-folder"></i> <%= category.name %></a>
+      <% }) %>
+      <% page.tags.forEach(function(tag) { %>
+        <a href="<%- url_for(tag.path) %>"><i class="fa-solid fa-tag"></i> <%= tag.name %></a>
+      <% }) %>
+    </div>
+    <%- page.content %>
+  </article>
+  <%- partial('_partial/sidebar') %>
+</main>

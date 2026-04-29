@@ -1,0 +1,13 @@
+<header class="topbar">
+  <a class="brand" href="<%- url_for('/') %>">
+    <img class="logo-spin" src="<%= theme.logo %>" alt="<%= config.title %> logo" />
+    <span><%= config.title %></span>
+  </a>
+  <nav class="nav">
+    <button id="searchToggle" type="button"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+    <a href="<%- url_for('/') %>"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="<%- url_for('/categories/') %>"><i class="fa-solid fa-folder-open"></i> Categories</a>
+    <a href="<%- url_for('/tags/') %>"><i class="fa-solid fa-tags"></i> Tags</a>
+    <button id="whoami" type="button"><i class="fa-solid fa-user-secret"></i> WhoAmI</button>
+  </nav>
+</header>
