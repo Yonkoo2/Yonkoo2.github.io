@@ -1,0 +1,14 @@
+<section class="post-hero">
+  <h1>Categories</h1>
+</section>
+<main class="page-shell">
+  <section class="card side-list taxonomy-page">
+    <h2><i class="fa-solid fa-folder-open"></i> Categories</h2>
+    <div class="chips">
+      <% site.categories.forEach(function(category) { %>
+        <a class="chip" href="<%- url_for(category.path) %>"><%= category.name %> (<%= category.length %>)</a>
+      <% }) %>
+    </div>
+  </section>
+  <%- partial('_partial/sidebar') %>
+</main>

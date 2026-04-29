@@ -1,33 +1,3 @@
 <aside class="sidebar">
-  <section class="card profile">
-    <img src="<%= theme.logo %>" alt="<%= config.title %> logo" />
-    <h2><%= theme.author_label || config.author %></h2>
-    <div class="stats">
-      <a href="<%- url_for('/') %>"><strong id="articleCount"><%= site.posts.length %></strong><span>Articles</span></a>
-      <a href="<%- url_for('/tags/') %>"><strong id="tagCount"><%= site.tags.length %></strong><span>Tags</span></a>
-      <a href="<%- url_for('/categories/') %>"><strong id="categoryCount"><%= site.categories.length %></strong><span>Categories</span></a>
-    </div>
-    <a class="github" href="<%= theme.github %>" target="_blank" rel="noopener">
-      <i class="fa-brands fa-github"></i> Follow Me
-    </a>
-  </section>
-
-  <section class="card side-list">
-    <h2><i class="fa-solid fa-clock-rotate-left"></i> Recent Posts</h2>
-    <% site.posts.sort('date', -1).limit(5).forEach(function(post) { %>
-      <a class="recent-item" href="<%- post.external_path || url_for(post.path) %>">
-        <img src="<%= theme.logo %>" alt="" />
-        <span><strong><%= post.title %></strong><span><%= date(post.date, 'YYYY-MM-DD') %></span></span>
-      </a>
-    <% }) %>
-  </section>
-
-  <section class="card side-list">
-    <h2><i class="fa-solid fa-tags"></i> Tags</h2>
-    <div class="chips">
-      <% site.tags.forEach(function(tag) { %>
-        <a class="chip" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
-      <% }) %>
-    </div>
-  </section>
+  <%- partial('sidebar-cards') %>
 </aside>

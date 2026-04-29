@@ -19,7 +19,6 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
-  - posts/attacking-sql-databases/index.html
 
 new_post_name: :title.md
 default_layout: post

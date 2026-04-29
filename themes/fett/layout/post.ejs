@@ -1,18 +1,38 @@
-<section class="hero compact">
+<%
+  var headings = [];
+  var content = page.content.replace(/<h2[^>]*>([\s\S]*?)<\/h2>/g, function(match, title) {
+    var clean = title.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    var id = clean.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || ('section-' + (headings.length + 1));
+    headings.push({ id: id, title: clean });
+    return match.replace('<h2', '<h2 id="' + id + '"');
+  });
+%>
+<section class="post-hero">
   <h1><%= page.title %></h1>
+  <div class="meta hero-meta">
+    <span><i class="fa-solid fa-calendar-days"></i> Created <%= date(page.date, 'YYYY-MM-DD') %></span>
+    <% page.categories.forEach(function(category) { %>
+      <a href="<%- url_for(category.path) %>"><i class="fa-solid fa-folder"></i> <%= category.name %></a>
+    <% }) %>
+    <% if (page.type) { %><span><i class="fa-solid fa-bookmark"></i> <%= page.type %></span><% } %>
+    <% page.tags.forEach(function(tag) { %>
+      <a href="<%- url_for(tag.path) %>"><i class="fa-solid fa-tag"></i> <%= tag.name %></a>
+    <% }) %>
+  </div>
 </section>
-<main class="page-shell">
-  <article class="card article-content">
-    <div class="meta">
-      <span><i class="fa-solid fa-calendar-days"></i> Created <%= date(page.date, 'YYYY-MM-DD') %></span>
-      <% page.categories.forEach(function(category) { %>
-        <a href="<%- url_for(category.path) %>"><i class="fa-solid fa-folder"></i> <%= category.name %></a>
-      <% }) %>
-      <% page.tags.forEach(function(tag) { %>
-        <a href="<%- url_for(tag.path) %>"><i class="fa-solid fa-tag"></i> <%= tag.name %></a>
-      <% }) %>
-    </div>
-    <%- page.content %>
+<main class="article-shell">
+  <article class="article-card article-content">
+    <%- content %>
   </article>
-  <%- partial('_partial/sidebar') %>
+  <aside class="article-sidebar">
+    <%- partial('_partial/sidebar-cards') %>
+    <section class="card side-list toc-card">
+      <h2><i class="fa-solid fa-bars-staggered"></i> Contents <span><%= headings.length %></span></h2>
+      <ol>
+        <% headings.forEach(function(heading) { %>
+          <li><a href="#<%= heading.id %>"><%= heading.title %></a></li>
+        <% }) %>
+      </ol>
+    </section>
+  </aside>
 </main>

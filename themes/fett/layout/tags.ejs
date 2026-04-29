@@ -1,0 +1,14 @@
+<section class="post-hero">
+  <h1>Tags</h1>
+</section>
+<main class="page-shell">
+  <section class="card side-list taxonomy-page">
+    <h2><i class="fa-solid fa-tags"></i> Tags</h2>
+    <div class="chips">
+      <% site.tags.forEach(function(tag) { %>
+        <a class="chip" href="<%- url_for(tag.path) %>"><%= tag.name %> (<%= tag.length %>)</a>
+      <% }) %>
+    </div>
+  </section>
+  <%- partial('_partial/sidebar') %>
+</main>
