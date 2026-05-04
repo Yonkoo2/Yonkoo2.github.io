@@ -200,6 +200,7 @@ button {
         url("/images/site-wallpaper.png") center / cover;
     display: grid;
     min-height: 220px;
+    overflow: hidden;
     place-items: center;
 }
 
@@ -208,6 +209,18 @@ button {
     height: 112px;
     object-fit: cover;
     width: 112px;
+}
+
+.post-thumb.has-image {
+    background: #05070d;
+}
+
+.post-thumb.has-image img {
+    border-radius: 0;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    width: 100%;
 }
 
 .post-body {
