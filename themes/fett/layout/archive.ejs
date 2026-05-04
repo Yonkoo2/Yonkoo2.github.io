@@ -4,9 +4,10 @@
 <main class="page-shell">
   <section class="post-list">
     <% page.posts.sort('date', -1).forEach(function(post) { %>
+      <% var postImage = post.image || post.cover || theme.logo; %>
       <article class="post-card">
         <a class="post-thumb" href="<%- post.external_path || url_for(post.path) %>">
-          <img src="<%= theme.logo %>" alt="" />
+          <img src="<%= postImage %>" alt="<%= post.title %>" />
         </a>
         <div class="post-body">
           <h2><a href="<%- post.external_path || url_for(post.path) %>"><%= post.title %></a></h2>
